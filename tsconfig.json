@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "types/*": ["./types/*"]
+        },
+        "allowJs": true, //разрешить компиляцию js файлов
+        "jsx": "react",
+        // "moduleResolution": "node", //разрешение модулей в стиле node.js
+        "noEmit": true, //не компилировать код, а только проверить (компилит бабел)
+        "resolveJsonModule": true, //включить модули с расширением json
+        "noUnusedLocals": true, //ошибка при неиспользованных локальных элементах
+        "noUnusedParameters": true //ошибка при неиспользуемых параметрах
+    }
+}
