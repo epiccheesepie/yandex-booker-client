@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { Bar } from './components';
 
-const App = () => {
+const App : React.FC = () => {
 
     return (
         <main>
-            Hello Booker!
+            <Bar />
+            <div className="snippets"></div>
         </main>
     );
 };
