@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Bar, Snippets } from './components';
+import { Bar, View } from './components';
 
 const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!book.cover_i).map(book => {
     return {
@@ -16,7 +16,14 @@ const App = () => {
 
     const timer : any = React.useRef();
     const [query, setQuery] = React.useState('');
-    const handleChange = (e) => setQuery(e.target.value);
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setQuery(value);
+        if (!value.length) {
+            setBooks([]);
+        }
+        
+    };
 
     const [books, setBooks] = React.useState([]);
     const [reqOptions, setReqOptions] = React.useState({
@@ -55,13 +62,13 @@ const App = () => {
         }
     }, [query]);
 
-    console.log(books);
+    const mainStyles = {marginTop: query.length || reqOptions.loading || books.length ? '20px' : 'calc(50vh - var(--bar-height))'};
 
     return (
-        <main>
+        <main style={mainStyles}>
             <Bar query={query} onChange={handleChange} />
-            <div className="snippets">
-                <Snippets 
+            <div className="content">
+                <View
                     loading={reqOptions.loading}
                     ok={reqOptions.ok}
                     items={books}

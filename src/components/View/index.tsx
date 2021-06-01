@@ -1,12 +1,8 @@
 import * as React from 'react';
 
-const Snippets = ({loading, ok, items}) => {
+const View = ({loading, ok, items}) => {
 
-    if (!ok) {
-        return (
-            <span>Ошибка</span>        
-        );
-    } else {
+    if (ok) {
         if (loading) {
             return (
                 <span>Загрузка...</span>         
@@ -18,8 +14,12 @@ const Snippets = ({loading, ok, items}) => {
                 </>
             )
         }
+    } else {
+        return (
+            <span>Ошибка</span>
+        );
     }
 
 };
 
-export default Snippets;
+export default View;

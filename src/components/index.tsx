@@ -1,2 +1,2 @@
 export { default as Bar } from './Bar';
-export { default as Snippets } from './Snippets';
+export { default as View } from './View';

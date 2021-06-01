@@ -1,3 +1,9 @@
+:root {
+    --bar-height: 50px;
+    --bar-max-width: 740px;
+    --bar-min-width: 350px;
+    --padding-container: 20px;
+}
 * {
     margin: 0;
     padding: 0;
@@ -12,4 +18,16 @@ html, body, #root {
 }
 main {
     margin: auto;
+    margin-top: calc(50vh - var(--bar-height));
+    padding: var(--padding-container);
+    max-width: var(--bar-max-width);
+    min-width: var(--bar-min-width);
+    width: 100%;
+    position: relative;
+    transition: margin .5s ease;
+}
+.content {
+    position: absolute;
+    left: 0;
+    padding: var(--padding-container);
 }
