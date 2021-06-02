@@ -1,0 +1,37 @@
+.snippet {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: calc(25% - 5px);
+    align-items: center;
+    transition: .2s ease-in-out;
+    padding: 8px 12px;
+}
+.snippet:hover {
+    transform: scale(1.025);
+}
+.snippet img {
+    width: 130px;
+}
+.snippet__text {
+    margin-top: 4px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+    width: 132px;   
+}
+.snippet__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 700px) {
+    .snippet {
+        width: calc(33% - 3px);
+    }
+}
+@media (max-width: 530px) {
+    .snippet {
+        width: calc(50% - 3px);
+    }
+}

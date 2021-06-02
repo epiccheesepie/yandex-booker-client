@@ -6,20 +6,22 @@ const View = ({loading, error, items}) => {
 
     if (error) {
         return (
-            <span>Ошибка</span>
+            <span>Ошибка, попробуйте позже</span>
         );
     } else if (loading) {
         return (
-            <span>Загрузка...</span>         
+            <div className="preloader">
+                <span className="preloader__content"></span>
+            </div>     
         );
     } else {
         return (
             <>
-            {!!items.length && (
-            <div className="content__load">
-                {items.map(book => <Snippet key={book.cover_i} book={book} />)}        
-            </div>
-            )}
+                {!!items.length && (
+                <div className="container">
+                    {items.map(book => <Snippet key={book.cover_id} book={book} />)}
+                </div>
+                )}
             </>
         );
     }

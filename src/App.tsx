@@ -8,16 +8,14 @@ const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!b
         cover_id: book.cover_i,
         first_publish: book.first_publish_year,
         isbn: book.isbn,
-        publishers: book.publisher_facet
+        publishers: book.publisher
     };
 });
 
 const App = () => {
 
     const [query, setQuery] = React.useState('');
-    const handleChange = (e) => {
-        setQuery(e.target.value);
-    };
+    const handleChange = (e) => setQuery(e.target.value);
 
     const [books, setBooks] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
@@ -52,6 +50,7 @@ const App = () => {
 
         return () => {
             setLoading(false);
+            setError(null);
             clearTimeout(timer);
             controller.abort();
         }
