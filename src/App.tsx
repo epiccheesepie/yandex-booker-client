@@ -14,63 +14,58 @@ const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!b
 
 const App = () => {
 
-    const timer : any = React.useRef();
     const [query, setQuery] = React.useState('');
     const handleChange = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        if (!value.length) {
-            setBooks([]);
-        }
-        
+        setQuery(e.target.value);
     };
 
     const [books, setBooks] = React.useState([]);
-    const [reqOptions, setReqOptions] = React.useState({
-        loading: false,
-        ok: true
-    });
+    const [loading, setLoading] = React.useState(false);
+    const [error, setError] = React.useState(null);
     
     React.useEffect(() => {
+        let timer;
+        let controller = new AbortController(); 
+
         if (query.length > 0) {
-            timer.current = setTimeout(() => {
-                setReqOptions({
-                    loading: true,
-                    ok: true
-                });
+            timer = setTimeout(() => {
+                setLoading(true);
                 
-                fetch('http://openlibrary.org/search.json?' + new URLSearchParams({
-                    title: query
-                })).then(res => res.json()).then(json => {
-                    setReqOptions({
-                        loading: false,
-                        ok: true
+                    fetch('http://openlibrary.org/search.json?' + new URLSearchParams({
+                        title: query
+                    }), {
+                        signal: controller.signal 
+                    }).then(res => res.json()).then(json => {
+                        setLoading(false);
+                        setBooks(mapDocsToSnippet(json.docs));
+                    }).catch(e => {
+                        if (e.name !== 'AbortError') {
+                            setLoading(false);
+                            setError(e);
+                        }
                     });
-                    setBooks(mapDocsToSnippet(json.docs));
-                }).catch(_ => {
-                    setReqOptions({
-                        loading: false,
-                        ok: false
-                    });
-                    setBooks([]);
-                });
+                
             }, 1000);
+        } else {
+            setBooks([]);
         }
 
         return () => {
-            clearTimeout(timer.current);
+            setLoading(false);
+            clearTimeout(timer);
+            controller.abort();
         }
     }, [query]);
 
-    const mainStyles = {marginTop: query.length || reqOptions.loading || books.length ? '20px' : 'calc(50vh - var(--bar-height))'};
+    const mainStyles = {marginTop: query.length || loading || books.length ? '20px' : 'calc(50vh - var(--bar-height))'};
 
     return (
         <main style={mainStyles}>
             <Bar query={query} onChange={handleChange} />
             <div className="content">
                 <View
-                    loading={reqOptions.loading}
-                    ok={reqOptions.ok}
+                    loading={loading}
+                    error={error}
                     items={books}
                 />
             </div>

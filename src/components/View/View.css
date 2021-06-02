@@ -1,0 +1,16 @@
+.content__load {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    border: var(--box-border);
+    box-shadow: var(--box-shadow);
+    padding: var(--padding-container);
+}
+.content__load div {
+    display: flex;
+    flex-direction: column;
+    width: calc(33% - 2px);
+}
+.content__load div img {
+    width: 150px;
+}

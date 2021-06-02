@@ -4,14 +4,14 @@
     position: relative;
 }
 .bar__text {
-    border: 1px solid rgba(0,0,0,.075);
+    border: var(--box-border);
     outline: none;
     width: 100%;
     height: var(--bar-height);
     padding-left: 22px;
     border-radius: 30px;
     font-size: 20px;
-    box-shadow: 0 0 35px 10px rgba(0,0,0,.06);
+    box-shadow: var(--box-shadow);
 }
 .bar__button {
     position: absolute;

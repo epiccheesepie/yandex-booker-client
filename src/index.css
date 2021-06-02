@@ -3,6 +3,9 @@
     --bar-max-width: 740px;
     --bar-min-width: 350px;
     --padding-container: 20px;
+
+    --box-border: 1px solid rgba(0,0,0,.075);
+    --box-shadow: 0 0 35px 10px rgba(0,0,0,.06);
 }
 * {
     margin: 0;
