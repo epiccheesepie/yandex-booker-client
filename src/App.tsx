@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Bar, View } from './components';
+import { useDispatch, useSelector } from 'react-redux';
+import { setBooks, setLoad, setError, setDrop, setQuery } from './redux/actions';
 
 const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!book.cover_i).map(book => {
     return {
@@ -14,12 +16,11 @@ const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!b
 
 const App = () => {
 
-    const [query, setQuery] = React.useState('');
-    const handleChange = (e) => setQuery(e.target.value);
-
-    const [books, setBooks] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const dispatch = useDispatch();
+    const { books, loading, error, query } = useSelector(({books, loading, error, query}) => ({
+        books, loading, error, query
+    }));
+    const handleChange = (e) => dispatch(setQuery(e.target.value));
     
     React.useEffect(() => {
         let timer;
@@ -27,30 +28,27 @@ const App = () => {
 
         if (query.length > 0) {
             timer = setTimeout(() => {
-                setLoading(true);
+                dispatch(setLoad());
                 
                     fetch('http://openlibrary.org/search.json?' + new URLSearchParams({
                         title: query
                     }), {
                         signal: controller.signal 
                     }).then(res => res.json()).then(json => {
-                        setLoading(false);
-                        setBooks(mapDocsToSnippet(json.docs));
+                        dispatch(setBooks(mapDocsToSnippet(json.docs)));
                     }).catch(e => {
                         if (e.name !== 'AbortError') {
-                            setLoading(false);
-                            setError(e);
+                            dispatch(setError(e));
                         }
                     });
                 
             }, 1000);
         } else {
-            setBooks([]);
+            dispatch(setBooks([]));
         }
 
         return () => {
-            setLoading(false);
-            setError(null);
+            dispatch(setDrop());
             clearTimeout(timer);
             controller.abort();
         }
