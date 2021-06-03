@@ -5,7 +5,16 @@ import { setActiveBook } from '../../redux/actions';
 import { Snippet } from '..';
 import './View.css';
 
-const View = ({loading, error, items, modalClick}) => {
+import { Item } from '../../redux/reducers';
+
+interface ComponentProps {
+    loading: boolean,
+    error: any,
+    items: Array<Item>,
+    modalClick: () => void
+}
+
+const View = ({loading, error, items, modalClick} : ComponentProps) => {
 
     const dispatch = useDispatch();
 

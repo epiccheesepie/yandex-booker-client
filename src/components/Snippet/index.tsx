@@ -1,7 +1,17 @@
 import * as React from 'react';
 import './Snippet.css';
 
-const Snippet = ({book: { title, author, cover_id}, index}) => {
+interface Item {
+    title: string,
+    author: string,
+    cover_id: number
+}
+interface ComponentProps {
+    book: Item,
+    index: number
+}
+
+const Snippet = ({book: { title, author, cover_id}, index} : ComponentProps) => {
     
     return (
         <div className="snippet" data-index={index}>

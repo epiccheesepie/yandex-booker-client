@@ -20,8 +20,3 @@ export const setActiveBook = (data) => ({
     type: 'ACTIVE',
     payload: data
 });
-
-export const setQuery = (query) => ({
-    type: 'QUERY',
-    payload: query
-});

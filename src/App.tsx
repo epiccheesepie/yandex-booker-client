@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Bar, View, Modal, Card } from './components';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBooks, setLoad, setError, setDrop, setQuery } from './redux/actions';
+import { setBooks, setLoad, setError, setDrop } from './redux/actions';
 
 const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!book.cover_i).map(book => {
     return {
@@ -17,10 +17,12 @@ const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!b
 const App = () => {
 
     const dispatch = useDispatch();
-    const { books, loading, error, query } = useSelector(({books, loading, error, query}) => ({
-        books, loading, error, query
+    const { books, loading, error } = useSelector(({books, loading, error}) => ({
+        books, loading, error
     }));
-    const handleChange = (e) => dispatch(setQuery(e.target.value));
+
+    const [query, setQuery] = React.useState('');
+    const handleChange = (e) => setQuery(e.target.value);
 
     const [modalActive, setModalActive] = React.useState(false);
     const handleModalClick = () => setModalActive(true);

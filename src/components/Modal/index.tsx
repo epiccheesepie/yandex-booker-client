@@ -1,7 +1,12 @@
 import * as React from 'react';
 import './Modal.css';
 
-const Modal = ({setActive, children}) => {
+interface ComponentProps {
+    setActive: (state: boolean) => void,
+    children: React.ReactNode
+}
+
+const Modal = ({setActive, children} : ComponentProps) => {
 
     return (
         <div className="modal" onClick={() => setActive(false)}>

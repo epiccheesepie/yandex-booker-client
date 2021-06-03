@@ -3,7 +3,7 @@ import './Bar.css';
 
 interface ComponentProps {
     query: string,
-    onChange: (e: React.ChangeEvent) => void;
+    onChange: (e: React.ChangeEvent) => void
 }
 
 const Bar = ({query, onChange} : ComponentProps) => {

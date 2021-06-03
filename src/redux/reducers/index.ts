@@ -1,8 +1,23 @@
-const initState = {
+interface RootState {
+    books: Array<Item>
+    loading: boolean,
+    error: any,
+    query: string,
+    activeBook: Item
+}
+export interface Item {
+    title: string,
+    author: string,
+    cover_id: number,
+    first_publish?: number,
+    isbn?: Array<number>,
+    publishers?: Array<string>
+}
+
+const initState : RootState = {
     books: [],
     loading: false,
     error: null,
-    query: '',
     activeBook: {title: ''}
 };
 
@@ -39,12 +54,6 @@ const books = (state = initState, action) => {
             return {
                 ...state,
                 activeBook: action.payload
-            };
-        
-        case 'QUERY':
-            return {
-                ...state,
-                query: action.payload
             };
 
         default:
