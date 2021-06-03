@@ -1,9 +1,9 @@
 const initState = {
     books: [],
-    activeBook: null,
     loading: false,
     error: null,
-    query: ''
+    query: '',
+    activeBook: {title: ''}
 };
 
 const books = (state = initState, action) => {

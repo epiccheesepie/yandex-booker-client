@@ -1,10 +1,11 @@
 :root {
     --bar-height: 50px;
-    --bar-max-width: 740px;
-    --bar-min-width: 350px;
+    --max-width: 740px;
+    --min-width: 350px;
     --padding-container: 20px;
     --box-border: 1px solid rgba(0,0,0,.075);
     --box-shadow: 0 0 35px 10px rgba(0,0,0,.06);
+    --box-border-radius: 12px;
 }
 * {
     margin: 0;
@@ -27,6 +28,12 @@ h2 {
     font-size: 13px;
     font-weight: 300;
 }
+h3 {
+    max-height: 70px;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 300;
+}
 
 #root {
     display: flex;
@@ -35,8 +42,8 @@ main {
     margin: auto;
     margin-top: calc(50vh - var(--bar-height));
     padding: var(--padding-container);
-    max-width: var(--bar-max-width);
-    min-width: var(--bar-min-width);
+    max-width: var(--max-width);
+    min-width: var(--min-width);
     width: 100%;
     position: relative;
     transition: margin .5s ease;

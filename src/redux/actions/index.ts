@@ -16,7 +16,7 @@ export const setError = (error) => ({
     payload: error
 });
 
-export const setActiveItem = (data) => ({
+export const setActiveBook = (data) => ({
     type: 'ACTIVE',
     payload: data
 });

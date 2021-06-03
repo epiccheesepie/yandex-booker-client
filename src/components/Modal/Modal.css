@@ -1,0 +1,28 @@
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.2);
+    display: flex;
+    animation: active .15s linear;
+}
+.modal__container {
+    margin: auto;
+    max-width: var(--max-width);
+    padding: var(--padding-container);
+    width: 100%;
+}
+.modal__content {
+    background-color: #fff;
+    border-radius: var(--box-border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+@keyframes active {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

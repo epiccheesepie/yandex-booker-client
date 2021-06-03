@@ -1,0 +1,33 @@
+.card {
+    display: flex;
+    padding: var(--padding-container);
+}
+.card__img img {
+    width: 180px;
+}
+.card__text {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.card__static {
+    color: #000;
+}
+.card__changed {
+    color: #0000008c;
+}
+
+@media (max-width: 530px) {
+    .card {
+        flex-direction: column;
+    }
+    .card__img {
+        display: flex;
+        justify-content: center;
+    }
+    .card__text {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}

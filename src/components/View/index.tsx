@@ -1,8 +1,21 @@
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { setActiveBook } from '../../redux/actions';
+
 import { Snippet } from '..';
 import './View.css';
 
-const View = ({loading, error, items}) => {
+const View = ({loading, error, items, modalClick}) => {
+
+    const dispatch = useDispatch();
+
+    const handleClick = (e) => {
+        const target = e.target.closest('.snippet');
+        if (!target) return;
+
+        dispatch(setActiveBook(items[target.dataset.index]));
+        modalClick();
+    };
 
     if (error) {
         return (
@@ -18,8 +31,8 @@ const View = ({loading, error, items}) => {
         return (
             <>
                 {!!items.length && (
-                <div className="container">
-                    {items.map(book => <Snippet key={book.cover_id} book={book} />)}
+                <div className="container" onClick={handleClick}>
+                    {items.map((book, index) => <Snippet key={book.cover_id} book={book} index={index} />)}
                 </div>
                 )}
             </>

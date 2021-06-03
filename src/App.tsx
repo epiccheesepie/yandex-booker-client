@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Bar, View } from './components';
+import { Bar, View, Modal, Card } from './components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBooks, setLoad, setError, setDrop, setQuery } from './redux/actions';
 
@@ -21,6 +21,9 @@ const App = () => {
         books, loading, error, query
     }));
     const handleChange = (e) => dispatch(setQuery(e.target.value));
+
+    const [modalActive, setModalActive] = React.useState(false);
+    const handleModalClick = () => setModalActive(true);
     
     React.useEffect(() => {
         let timer;
@@ -57,16 +60,24 @@ const App = () => {
     const mainStyles = {marginTop: query.length || loading || books.length ? '20px' : 'calc(50vh - var(--bar-height))'};
 
     return (
-        <main style={mainStyles}>
-            <Bar query={query} onChange={handleChange} />
-            <div className="content">
-                <View
-                    loading={loading}
-                    error={error}
-                    items={books}
-                />
-            </div>
-        </main>
+        <>
+            <main style={mainStyles}>
+                <Bar query={query} onChange={handleChange} />
+                <div className="content">
+                    <View
+                        loading={loading}
+                        error={error}
+                        items={books}
+                        modalClick={handleModalClick}
+                    />
+                </div>
+            </main>
+            {modalActive && (
+            <Modal setActive={setModalActive}>
+                <Card />
+            </Modal>
+            )}
+        </>
     );
 };
 
