@@ -5,22 +5,24 @@
     border: var(--box-border);
     box-shadow: var(--box-shadow);
     padding: var(--padding-container);
-    border-radius: 12px;
+    border-radius: var(--box-border-radius);
 }
 .preloader {
+    position: absolute;
     width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    height: calc(100vh - 130px);
+    pointer-events: none;
 }
 .preloader__content {
+    margin: auto;
     width: 55px;
     height: 55px;
     border: 1px solid #f25f65;
     border-radius: 50%;
     border-left-color: transparent;
-
     animation: rotate 1s linear infinite;
 }
 @keyframes rotate {

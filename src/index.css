@@ -1,11 +1,13 @@
 :root {
     --bar-height: 50px;
+    --header-height: 40px;
     --max-width: 740px;
     --min-width: 350px;
     --padding-container: 20px;
     --box-border: 1px solid rgba(0,0,0,.075);
     --box-shadow: 0 0 35px 10px rgba(0,0,0,.06);
     --box-border-radius: 12px;
+    --main-color: #f25f65;
 }
 * {
     margin: 0;
@@ -18,7 +20,6 @@ html, body, #root {
 }
 h1, h2, h3 {
     font-family: Helvetica, sans-serif;
-    margin: 0;
 }
 h1 {
     font-size: 16px;
@@ -41,23 +42,36 @@ h4 {
     font-size: 30px;
     font-weight: 600;
 }
+h5 {
+    font-size: 35px;
+    font-weight: 600;
+    color: var(--main-color);
+}
 
 #root {
     display: flex;
 }
 main {
     margin: auto;
-    margin-top: calc(50vh - var(--bar-height));
     padding: var(--padding-container);
     max-width: var(--max-width);
     min-width: var(--min-width);
     width: 100%;
+    height: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.header {
+    height: var(--header-height);
+}
+section {
+    margin: auto;
+    width: 100%;
+    margin-top: calc(50vh - var(--bar-height) - var(--header-height));
     transition: margin .5s ease;
 }
 .content {
-    position: absolute;
-    left: 0;
-    padding: var(--padding-container);
+    margin-top: var(--padding-container);
     width: 100%;
 }

@@ -17,10 +17,17 @@
     position: absolute;
     right: 0;
     border: none;
-    cursor: pointer;
     width: 68px;
     height: 68px;
     border-radius: 50%;
-    background-color: #f25f65;
+    background-color: var(--main-color);
     box-shadow: 0px 0px 12px 2px rgb(0 0 0 / 15%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bar__button svg {
+    width: 28px;
+    fill: #eee;
 }

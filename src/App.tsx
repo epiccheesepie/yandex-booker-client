@@ -14,7 +14,7 @@ const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!b
     };
 });
 
-const App = () => {
+const App = React.memo(() => {
 
     const dispatch = useDispatch();
     const { books, loading, error } = useSelector(({books, loading, error}) => ({
@@ -26,27 +26,26 @@ const App = () => {
 
     const [modalActive, setModalActive] = React.useState(false);
     const handleModalClick = () => setModalActive(true);
-    
+
     React.useEffect(() => {
         let timer;
-        let controller = new AbortController(); 
+        const controller = new AbortController();
 
         if (query.length > 0) {
             timer = setTimeout(() => {
+                dispatch(setError(null));
                 dispatch(setLoad());
-                
-                    fetch('http://openlibrary.org/search.json?' + new URLSearchParams({
-                        title: query
-                    }), {
-                        signal: controller.signal 
-                    }).then(res => res.json()).then(json => {
-                        dispatch(setBooks(mapDocsToSnippet(json.docs)));
-                    }).catch(e => {
-                        if (e.name !== 'AbortError') {
-                            dispatch(setError(e));
-                        }
-                    });
-                
+                fetch('http://openlibrary.org/search.json?' + new URLSearchParams({
+                    title: query
+                }), {
+                    signal: controller.signal 
+                }).then(res => res.json()).then(json => {
+                    dispatch(setBooks(mapDocsToSnippet(json.docs)));
+                }).catch(e => {
+                    if (e.name !== 'AbortError') {
+                        dispatch(setError(e));
+                    }
+                });
             }, 1000);
         } else {
             dispatch(setBooks([]));
@@ -59,20 +58,28 @@ const App = () => {
         }
     }, [query]);
 
-    const mainStyles = {marginTop: query.length || loading || books.length ? '20px' : 'calc(50vh - var(--bar-height))'};
+    const sectionStyles = {marginTop: query.length || loading || books.length ? '30px' : 'calc(50vh - var(--bar-height) - var(--header-height))'};
 
     return (
         <>
-            <main style={mainStyles}>
-                <Bar query={query} onChange={handleChange} />
-                <div className="content">
-                    <View
-                        loading={loading}
-                        error={error}
-                        items={books}
-                        modalClick={handleModalClick}
-                    />
+            <main>
+                <div className="header">
+                    <h5>booker.</h5>
                 </div>
+                <section style={sectionStyles}>
+                    <Bar 
+                        query={query}
+                        onChange={handleChange}
+                    />
+                    <div className="content">
+                        <View
+                            loading={loading}
+                            error={error}
+                            items={books}
+                            modalClick={handleModalClick}
+                        />
+                    </div>
+                </section>
             </main>
             {modalActive && (
             <Modal setActive={setModalActive}>
@@ -81,6 +88,6 @@ const App = () => {
             )}
         </>
     );
-};
+}); 
 
 export default App;
