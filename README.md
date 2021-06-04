@@ -3,8 +3,8 @@
 
 ## Интерфейс
 
-<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/doc/pc.png' alt='Interface' />
-<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/doc/phone.png' alt='Interface' />
+<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/main/doc/pc.png' alt='Interface' />
+<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/main/doc/phone.png' alt='Interface' />
 
 ## Стек
 - ReactJS
