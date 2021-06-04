@@ -34,15 +34,17 @@ const App = React.memo(() => {
         if (query.length > 0) {
             timer = setTimeout(() => {
                 dispatch(setError(null));
-                dispatch(setLoad());
+                dispatch(setLoad(true));
                 fetch('http://openlibrary.org/search.json?' + new URLSearchParams({
                     title: query
                 }), {
                     signal: controller.signal 
                 }).then(res => res.json()).then(json => {
+                    dispatch(setLoad(false));
                     dispatch(setBooks(mapDocsToSnippet(json.docs)));
                 }).catch(e => {
                     if (e.name !== 'AbortError') {
+                        dispatch(setLoad(false));
                         dispatch(setError(e));
                     }
                 });

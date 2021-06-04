@@ -6,6 +6,7 @@
     align-items: center;
     transition: .2s ease-in-out;
     padding: 8px 12px;
+    /* justify-content: space-between; */
 }
 .snippet:hover {
     transform: scale(1.025);
@@ -14,10 +15,10 @@
     width: 130px;
 }
 .snippet__text {
-    margin-top: 4px;
+    margin-top: 8px;
     border-bottom: 1px solid #eee;
     padding-bottom: 4px;
-    width: 132px;   
+    width: 100%;   
 }
 .snippet__title {
     white-space: nowrap;

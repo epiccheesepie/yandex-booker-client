@@ -4,7 +4,8 @@
 ## Интерфейс
 
 <img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/main/doc/pc.png' alt='Interface' />
-<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/main/doc/phone.png' alt='Interface' />
+<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/main/doc/pc2.png' alt='Interface' />
+<img src='https://raw.githubusercontent.com/epiccheesepie/yandex-booker-client/main/doc/phone2.png' alt='Interface' />
 
 ## Стек
 - ReactJS

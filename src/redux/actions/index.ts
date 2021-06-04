@@ -3,8 +3,9 @@ export const setBooks = (books) => ({
     payload: books
 });
 
-export const setLoad = () => ({
-    type: 'LOAD'
+export const setLoad = (bool) => ({
+    type: 'LOAD',
+    payload: bool
 });
 
 export const setDrop = () => ({

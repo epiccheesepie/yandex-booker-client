@@ -26,7 +26,6 @@ const books = (state = initState, action) => {
         case 'BOOKS':
             return {
                 ...state,
-                loading: false,
                 books: action.payload
             };
 
@@ -40,13 +39,12 @@ const books = (state = initState, action) => {
         case 'LOAD':
             return {
                 ...state,
-                loading: true
+                loading: action.payload
             };
 
         case 'ERROR':
             return {
                 ...state,
-                loading: false,
                 error: action.payload
             };
 
