@@ -1,18 +1,9 @@
 import * as React from 'react';
-import { Bar, View, Modal, Card } from './components';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBooks, setLoad, setError, setDrop } from './redux/actions';
 
-const mapDocsToSnippet = (docs) => docs.filter(book => !!book.author_name && !!book.cover_i).map(book => {
-    return {
-        title: book.title,
-        author: book.author_name[0],
-        cover_id: book.cover_i,
-        first_publish: book.first_publish_year,
-        isbn: book.isbn,
-        publishers: book.publisher
-    };
-});
+import { Bar, View, Modal, Card } from './components';
+import { setBooks, setLoad, setError, setDrop } from './redux/actions';
+import { mapDocsToSnippet } from './utils/mapDocsToSnippet';
 
 const App = React.memo(() => {
 
@@ -39,9 +30,9 @@ const App = React.memo(() => {
                     title: query
                 }), {
                     signal: controller.signal 
-                }).then(res => res.json()).then(json => {
+                }).then(res => res.json()).then(({ docs }) => {
                     dispatch(setLoad(false));
-                    dispatch(setBooks(mapDocsToSnippet(json.docs)));
+                    dispatch(setBooks(mapDocsToSnippet(docs)));
                 }).catch(e => {
                     if (e.name !== 'AbortError') {
                         dispatch(setLoad(false));

@@ -6,7 +6,7 @@ interface ComponentProps {
     onChange: (e: React.ChangeEvent) => void
 }
 
-const Bar = ({query, onChange} : ComponentProps) => {
+const Bar : React.FC<ComponentProps> = ({query, onChange}) : React.ReactElement => {
 
     return (
         <div className="bar">

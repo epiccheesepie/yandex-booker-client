@@ -6,14 +6,17 @@ interface ComponentProps {
     children: React.ReactNode
 }
 
-const Modal = ({setActive, children} : ComponentProps) => {
+const Modal : React.FC<ComponentProps> = ({setActive, children}) : React.ReactElement => {
+
+    React.useEffect(() : any => {
+        document.body.style.overflow = 'hidden';
+        return () => document.body.style.overflow = 'unset';
+    }, []);
 
     return (
         <div className="modal" onClick={() => setActive(false)}>
-            <div className="modal__container">
-                <div className="modal__content" onClick={(e) => e.stopPropagation()}>
-                    {children}
-                </div>
+            <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+                {children}
             </div>
         </div>
     );

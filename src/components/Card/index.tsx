@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import './Card.css';
 
-const Card = () => {
+const Card : React.FC = () : React.ReactElement => {
 
     const {title, author, cover_id, first_publish, isbn, publishers} = useSelector(({activeBook}) => {
         return {

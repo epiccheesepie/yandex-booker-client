@@ -1,17 +1,13 @@
 import * as React from 'react';
 import './Snippet.css';
+import { TBook } from '../../types'; 
 
-interface Item {
-    title: string,
-    author: string,
-    cover_id: number
-}
 interface ComponentProps {
-    book: Item,
+    book: TBook,
     index: number
 }
 
-const Snippet = ({book: { title, author, cover_id}, index} : ComponentProps) => {
+const Snippet : React.FC<ComponentProps> = ({book: { title, author, cover_id}, index}) : React.ReactElement => {
     
     return (
         <div className="snippet" data-index={index}>

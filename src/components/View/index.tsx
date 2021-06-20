@@ -1,20 +1,19 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
+
 import { setActiveBook } from '../../redux/actions';
-
 import { Snippet } from '..';
+import { TBook } from '../../types';
 import './View.css';
-
-import { Item } from '../../redux/reducers';
 
 interface ComponentProps {
     loading: boolean,
     error: any,
-    items: Array<Item>,
+    items: Array<TBook>,
     modalClick: () => void
 }
 
-const View = ({loading, error, items, modalClick} : ComponentProps) => {
+const View : React.FC<ComponentProps> = ({loading, error, items, modalClick}) : React.ReactElement => {
 
     const dispatch = useDispatch();
 
@@ -33,7 +32,9 @@ const View = ({loading, error, items, modalClick} : ComponentProps) => {
     } else if (loading) {
         return (
             <div className="preloader">
-                <span className="preloader__content"></span>
+                <span className="preloader__content">
+                    <span></span>
+                </span>
             </div>     
         );
     } else {
@@ -41,7 +42,7 @@ const View = ({loading, error, items, modalClick} : ComponentProps) => {
             <>
                 {!!items.length && (
                 <div className="container" onClick={handleClick}>
-                    {items.map((book, index) => <Snippet key={book.cover_id} book={book} index={index} />)}
+                    {items.map((book : TBook, index : number) => <Snippet key={book.cover_id} book={book} index={index} />)}
                 </div>
                 )}
             </>

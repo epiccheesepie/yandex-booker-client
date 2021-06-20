@@ -1,24 +1,10 @@
-interface RootState {
-    books: Array<Item>
-    loading: boolean,
-    error: any,
-    query: string,
-    activeBook: Item
-}
-export interface Item {
-    title: string,
-    author: string,
-    cover_id: number,
-    first_publish?: number,
-    isbn?: Array<number>,
-    publishers?: Array<string>
-}
+import { RootState } from '../../types';
 
 const initState : RootState = {
     books: [],
-    loading: false,
+    loading: true,
     error: null,
-    activeBook: {title: ''}
+    activeBook: {}
 };
 
 const books = (state = initState, action) => {

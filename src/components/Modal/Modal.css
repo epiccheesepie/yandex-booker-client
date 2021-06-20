@@ -7,14 +7,10 @@
     background-color: rgba(0,0,0,.2);
     animation: active .15s linear;
     display: flex;
-}
-.modal__container {
     overflow-y: auto;
-    margin: auto;
-    display: flex;
-    height: 100%;
 }
 .modal__content {
+    max-width: var(--max-width);
     width: 100%;
     display: flex;
     margin: auto;
